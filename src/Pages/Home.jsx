@@ -21,7 +21,7 @@ const Home = () => {
   <div className="relative z-10 w-full lg:px-0 px-6 lg:w-2/3 ">
     <h2 className="text-secondary py-3 lg:text-5xl">RawFlex Calisthenics: Achieve Peak Fitness Naturally</h2>
     <p>
-        Welcome to RawFlex Calisthenics, your ultimate destination for achieving peak fitness naturally.
+    Discover the power of your own body with RawFlex Calisthenics. We specialize in bodyweight exercises that build lean muscle and promote health without the need for artificial equipment. Experience a holistic approach to fitness that uses your own strength to achieve peak performance.
 
 
     </p>
