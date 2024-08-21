@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
     const [option, setOption] = useState(true);
 const [width,setWidth] = useState(window.innerWidth)
+const [showOption, setShowOption] = useState(false)
+
     
 
     useEffect(() => {
@@ -28,6 +30,23 @@ const [width,setWidth] = useState(window.innerWidth)
     };
       
     }, [width]);
+
+
+    const showOptions =()=>{
+
+        
+        if(showOption === true)
+        {
+            setShowOption(false)
+            console.log(showOption)
+        }
+        else
+        {
+            setShowOption(true)
+            console.log(showOption)
+        }
+
+    }
     
 
   return (
@@ -40,7 +59,7 @@ const [width,setWidth] = useState(window.innerWidth)
     </div>
 
     {option? <div className="optionBar w-1/6 flex justify-center items-center mx-0 font-medium text-black text-lg cursor-pointer">
-     <i className="fi fi-rr-menu-burger "></i>
+     <i className="fi fi-rr-menu-burger " onClick={()=>{showOptions()}}></i>
      </div>:
     <div className="options lg:w-2/3 flex-wrap w-screen flex justify-center lg:justify-end items-center text-cyan-700 font-normal mx-0 lg:mx-24">
   
@@ -66,6 +85,21 @@ const [width,setWidth] = useState(window.innerWidth)
     </div>
 }
 </div>
+{showOption ? <div className="mobileOption  w-screen bg-white z-50 flex flex-col text-primary font-medium">
+    <ul>
+        <li>
+            <Link to="/calculator">Calculator</Link>
+        </li>
+        <hr className="mx-4 m-2" />
+        <li>
+            <Link to="/programs">Programs</Link>
+        </li>
+        <hr className="mx-4 m-2"/>
+        <li className="m-2">
+            <Link to="/contact">Contact</Link>
+        </li>
+    </ul>
+</div>:<></>}
     </>
   );
 };
