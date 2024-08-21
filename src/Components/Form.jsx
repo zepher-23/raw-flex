@@ -40,7 +40,7 @@ const Form = () => {
         formData.units === 'metric' ? 'kg' : 'lbs';
     
       return (
-        <div className="max-w-md mx-3 lg:mx-6 mt-28 my-10 p-4 bg-gray-100 bg-opacity-20 shadow-md">
+        <div className="max-w-md mx-3 lg:mx-6 mt-28 my-10 p-8 bg-gray-100 bg-opacity-20 shadow-md">
           <h4 className="text-xl font-medium mb-4">To give you the best possible insights, we just need a little info from you!</h4>
     
           <div className="mb-4 flex items-center ">
@@ -102,7 +102,7 @@ const Form = () => {
           </div>
     
          <div className="button flex justify-center my-5">
-            <button onClick={submitInfo} className="px-6 py-2 bg-secondary text-xl rounded-md">Submit
+            <button onClick={submitInfo} className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md">Submit
 
 
             </button>
