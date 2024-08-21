@@ -15,7 +15,7 @@ const Home = () => {
 
 {/* <Hero /> */}
 
-<div className="hero relative flex justify-center items-start lg:items-center w-screen h-screen lg:py-0 py-20">
+<div className="hero relative flex justify-center items-start lg:items-center w-screen h-screen lg:py-0 py-20 mt-10">
   <div className="absolute inset-0  bg-center bg-no-repeat bg-cover opacity-40" style={{backgroundImage:`url(${hero1})`, backgroundSize:'100%',backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}></div>
   <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-60"></div>
   <div className="relative z-10 w-full lg:px-0 px-6 lg:w-2/3 ">
@@ -26,7 +26,7 @@ const Home = () => {
 
     </p>
     <div className="buttons flex lg:flex-row flex-col justify-center items-center w-full">
-        <CTAButton message="Find out What to Eat!" url="calculator" />
+        <CTAButton message="Find out More!" url="calculator" />
     </div>
 
   </div>

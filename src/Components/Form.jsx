@@ -41,7 +41,9 @@ const Form = () => {
     
       return (
         <div className="max-w-md mx-3 lg:mx-6 mt-28 my-10 p-8 bg-gray-100 bg-opacity-20 shadow-md">
-          <h4 className="text-xl font-medium mb-4">To give you the best possible insights, we just need a little info from you!</h4>
+         <h4 className="text-3xl font-medium text-secondary text-center mb-2">Discover the perfect diet and exercise plan to reach your peak fitness!</h4>
+
+          <h4 className="text-sm font-light text-left mb-2">To give you the best possible insights, we just need a little info from you!</h4>
     
           <div className="mb-4 flex items-center ">
             <button
