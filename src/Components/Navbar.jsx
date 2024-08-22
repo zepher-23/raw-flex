@@ -53,8 +53,8 @@ const [showOption, setShowOption] = useState(false)
     <>
     <div className="navbar fixed z-50 flex flex-row w-full h-26 lg:h-24 bg-white">
 
-    <div className="logo w-full my-5 lg:my-0 lg:w-1/3 flex justify-center items-center text-cyan-400 font-medium">
-  <Link to="/" >  <h1 className="text-center text-secondary ">RAWFLEX</h1></Link>
+    <div className="logo w-full my-5 lg:my-0 lg:w-1/3 flex justify-center items-center text-cyan-400 ">
+  <Link to="/" >  <h1 className="text-center text-secondary font-bold ">RAWFLEX</h1></Link>
 
     </div>
 
