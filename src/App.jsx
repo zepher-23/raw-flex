@@ -23,9 +23,9 @@ function App() {
         <Route path='calculator' element={<Calc />} />
         <Route path='programs' element={<Programs />} />
         <Route path='contact' element={<Contact />} />
-        <Route path='/payment-success' element={<Success />} />
-        <Route path='/payment-failure' element={<Failure />} />
-        <Route path='/payment-cancel' element={<Cancel />} />
+        <Route path='payment-success' element={<Success />} />
+        <Route path='payment-failure' element={<Failure />} />
+        <Route path='payment-cancel' element={<Cancel />} />
 
 
       </Routes>
