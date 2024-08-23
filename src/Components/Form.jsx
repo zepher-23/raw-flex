@@ -4,6 +4,7 @@ import { marked } from 'marked';
 import DOMPurify from 'dompurify';
 import html2pdf from 'html2pdf.js';
 import '../App.css'
+import { Link } from "react-router-dom";
 
 
 
@@ -156,28 +157,29 @@ const handleSubmit = async () => {
       setError("Please provide your age, gender, weight, height, fitness goals, current activity level, and any dietary restrictions or preferences.");
       return;
     }
+    
 
     setLoading(true);
     setError('');
     try {
       const result = await axios.post(
-        'https://api.openai.com/v1/chat/completions',
+        "https://api.openai.com/v1/chat/completions",
         {
-          model: 'gpt-4o-mini',
+          model: "gpt-4o-mini",
           messages: [
             {
               role: "system",
-              content: "You are a fitness expert capable of providing a tailored workout plan using only bodyweight and a variety of diet plan. Do not include any introductory statements or repeat information about the user profile. Be more considerate of the users injuries or allergies. If no information about the user is provided, kindly request in a sentence to provide the information."
+              content:"You're a fitness expert creating a personalized workout and diet plan for a user based on the following information: age, gender, fitness goal, current fitness level, dietary preferences,injuries and allergies. Generate the following: Introduction: Start with a friendly introduction that acknowledges the user's goals and explains how this customized plan will help them achieve those goals.Workout Plan: Provide a detailed workout plan for the first week, including specific exercises, sets, reps, and rest periods(All exercises are done using body weight). Ensure the plan is tailored to their fitness level and goals (e.g., weight loss, muscle gain, endurance).Diet Plan: Create a day-by-day diet plan for the first week, including meals and snacks. Ensure it aligns with their dietary preferences and supports their fitness goals.Make sure the tone is supportive and motivational, and the instructions are clear and actionable.",
             },
-            { role: 'user', content: prompt }
+            { role: "user", content: prompt },
           ],
-          max_tokens: 1000,
+          max_tokens: 1500,
           temperature: 0.7,
         },
         {
           headers: {
-            'Authorization': `Bearer ${apikey}`,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${apikey}`,
+            "Content-Type": "application/json",
           },
         }
       );
@@ -187,7 +189,7 @@ const handleSubmit = async () => {
       const sanitizedHtml = DOMPurify.sanitize(htmlContent);
 
       // Set the content of the ref element
-      contentRef.current.innerHTML  = `<div style="dislpay:flex,flex-direction:column,justify-content:center,width:100%"><h1 style="margin-bottom:20px;color:#34E89E" >RawFlex Calisthenics</h1> ${sanitizedHtml}</div> `
+      contentRef.current.innerHTML  = `<div style="dislpay:flex,flex-direction:column,justify-content:center,width:100%;"><h1 style="margin-bottom:20px;color:#34E89E" >RawFlex Calisthenics</h1> ${sanitizedHtml}</div> `
 
       // Generate PDF from the ref element
       
@@ -426,18 +428,32 @@ const handleSubmit = async () => {
           </div>
 
           <div className="button flex justify-center my-5">
-            <button
-              onClick={handleSubmit}
+          <Link to="https://test.payumoney.com/url/uIhLlIFCHEzk" > <button
+              
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
-               {loading ? 'Loading...' : 'Download Plan'}
-            </button>
-{pdf ? <button
-              onClick={handleSubmit}
-              className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
-            >
-               Download PDF
-            </button>:null}
+    {loading ? 'Loading...' : <h4>Pay <em className="font-bold">Rs.99</em>  & Download Plan</h4>}
+</button></Link>
+
+            {/* <div>
+      <a
+        href="https://test.payumoney.com/url/uIhLlIFCHEzk"
+        style={{
+          width: '150px',
+          backgroundColor: '#1CA953',
+          textAlign: 'center',
+          fontWeight: 800,
+          padding: '11px 0px',
+          color: 'white',
+          fontSize: '12px',
+          display: 'inline-block',
+          textDecoration: 'none',
+          borderRadius: '3.229px',
+        }}
+      >
+        Buy Now
+      </a>
+    </div> */}
           </div>
 {/* {formattedResponse && <div className="w-full text-left my-5 ">{formattedResponse}</div>} */}
 {error ? <div className="w-full text-left my-5 " >{error}</div>:null}
@@ -457,7 +473,7 @@ const handleSubmit = async () => {
           </div>
         </div>
 
-        <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6" >{downloadReady ? <div></div>: <div className="flex w-full h-full justify-center text-secondary items-center"><h3>Your report will appear here!</h3></div>}</div>
+        <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6 lg:p-12" >{downloadReady ? <div></div>: <div className="flex w-full h-full justify-center text-secondary items-center"><h3 className="max-w-md text-center">You can view your report here and a PDF will be available for download!</h3></div>}</div>
 
 
         </div>

@@ -6,6 +6,11 @@ import Calc from './Pages/Calc'
 import Home from './Pages/Home';
 import Programs from './Pages/Programs';
 import Contact from './Pages/Contact';
+import Cancel from './Pages/Cancel';
+import Success from './Pages/Success';
+import Failure from './Pages/Failure';
+
+
 function App() {
 
   return (
@@ -18,6 +23,11 @@ function App() {
         <Route path='calculator' element={<Calc />} />
         <Route path='programs' element={<Programs />} />
         <Route path='contact' element={<Contact />} />
+        <Route path='/payment-success' element={<Success />} />
+        <Route path='/payment-failure' element={<Failure />} />
+        <Route path='/payment-cancel' element={<Cancel />} />
+
+
       </Routes>
     </Router>
     </>
