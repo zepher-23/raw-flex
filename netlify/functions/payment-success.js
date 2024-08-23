@@ -1,7 +1,10 @@
 exports.handler = async function (event, context) {
-    if (event.httpMethod === 'POST') {
+    if (event.httpMethod === 'GET') {
       try {
         // Handle cancellation
+        const queryParams = event.queryStringParameters;
+        console.log("event:",event)
+      console.log('Query Parameters:', queryParams);
         return {
           statusCode: 302,
           headers: {
