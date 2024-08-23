@@ -427,12 +427,12 @@ const handleSubmit = async () => {
             </select>
           </div>
 
-          <div className="button flex justify-center my-5">
-          <Link to="https://test.payumoney.com/url/3IjqPtss0gI0" > <button
+          <div className="button flex justify-between items-center my-5">
+          <Link to="https://pmny.in/krnqjtlSdJST" > <button
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
-    {loading ? 'Loading...' : <h4>Pay <em className="font-bold">Rs.99</em>  & Download Plan</h4>}
+    {loading ? 'Loading...' : <h4>Pay & Download</h4>}
 </button></Link>
 
             {/* <div>
@@ -454,6 +454,10 @@ const handleSubmit = async () => {
         Buy Now
       </a>
     </div> */}
+     <div className="flex flex-col items-center shadow-lg px-5 lg:px-10 py-1 rounded-lg">
+        <span className="text-sm line-through text-gray-300">MRP: ₹299</span>
+        <span className="text-5xl font-light text-white font-mono "><em className="text-lg">Rs.</em>99</span>
+      </div>
           </div>
 {/* {formattedResponse && <div className="w-full text-left my-5 ">{formattedResponse}</div>} */}
 {error ? <div className="w-full text-left my-5 " >{error}</div>:null}
@@ -473,7 +477,11 @@ const handleSubmit = async () => {
           </div>
         </div>
 
-        <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6 lg:p-12" >{downloadReady ? <div></div>: <div className="flex w-full h-full justify-center text-secondary items-center"><h3 className="max-w-md text-center">You can view your report here and a PDF will be available for download!</h3></div>}</div>
+        <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6 lg:p-12" >{downloadReady ? <div></div>: <div className="flex flex-col w-full h-full justify-center  items-center">
+            <h3 className="max-w-md text-center font-bold text-secondary ">You can view your report here and a PDF will be available for download!</h3> 
+            <p className="text-black p-6">We charge Rs. 99 for generating your personalized workout and meal plan to cover the costs of maintaining
+                 and improving our platform. This fee ensures you receive accurate, expert-reviewed recommendations,
+                 helping us keep our service reliable and valuable for your fitness journey.</p></div>}</div>
 
 
         </div>
