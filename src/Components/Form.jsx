@@ -428,7 +428,7 @@ const handleSubmit = async () => {
           </div>
 
           <div className="button flex justify-between items-center my-5">
-          <Link to="https://pmny.in/krnqjtlSdJST" > <button
+          <Link to="https://payments.cashfree.com/forms/rawflexpayment" > <button
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >

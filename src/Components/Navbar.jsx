@@ -51,7 +51,7 @@ const [showOption, setShowOption] = useState(false)
 
   return (
     <>
-    <div className="navbar fixed z-50 flex flex-row w-full h-26 lg:h-24 bg-white">
+    <div className="navbar fixed top-0 z-50 flex flex-row w-full h-26 lg:h-24 bg-white">
 
     <div className="logo w-full my-5 lg:my-0 lg:w-1/3 flex justify-center items-center text-cyan-400 ">
   <Link to="/" >  <h1 className="text-center text-secondary font-bold ">RAWFLEX</h1></Link>
@@ -85,7 +85,7 @@ const [showOption, setShowOption] = useState(false)
     </div>
 }
 </div>
-{showOption ? <div className="mobileOption  w-screen bg-white z-50 flex mt-20 fixed flex-col text-primary font-medium">
+{showOption ? <div className="mobileOption  w-screen bg-white z-50 flex mt-20 fixed top-0 flex-col text-primary font-medium">
     <ul>
         <li>
             <Link to="/calculator">Calculator</Link>
@@ -97,6 +97,14 @@ const [showOption, setShowOption] = useState(false)
         <hr className="mx-4 m-2"/>
         <li className="m-2">
             <Link to="/contact">Contact</Link>
+        </li>
+        <hr className="mx-4 m-2"/>
+        <li className="m-2">
+            <Link to="/terms">Terms & Condition</Link>
+        </li>
+        <hr className="mx-4 m-2"/>
+        <li className="m-2">
+            <Link to="/redund">Refund & Cancellation</Link>
         </li>
     </ul>
 </div>:<></>}

@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import Footer from "../Components/Footer";
+
 const Success = ({props}) => {
 
     const navigate = useNavigate();
@@ -66,6 +68,7 @@ const Success = ({props}) => {
             Go to Home
           </button>
         </div>
+        <Footer/>
       </div>
     );
 };

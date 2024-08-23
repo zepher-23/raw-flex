@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar";
 import Hero from "../Components/Hero.jsx";
 import hero1 from '../assets/hero1.jpg';
 import CTAButton from "../Components/CTAButton.jsx";
+import Footer from "../Components/Footer";
 
 
 
@@ -33,6 +34,7 @@ const Home = () => {
 </div>
 
     </div>
+    <Footer/>
     </>
   )
 };

@@ -9,7 +9,9 @@ import Contact from './Pages/Contact';
 import Cancel from './Pages/Cancel';
 import Success from './Pages/Success';
 import Failure from './Pages/Failure';
+import Terms from './Pages/Terms';
 
+import Refund from './Pages/Refund';
 
 function App() {
 
@@ -26,6 +28,9 @@ function App() {
         <Route path='payment-success' element={<Success />} />
         <Route path='payment-failure' element={<Failure />} />
         <Route path='payment-cancel' element={<Cancel />} />
+        <Route path='terms' element={<Terms />} />
+        <Route path='refund' element={<Refund />} />
+
 
 
       </Routes>
