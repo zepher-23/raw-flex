@@ -104,7 +104,7 @@ const [showOption, setShowOption] = useState(false)
         </li>
         <hr className="mx-4 m-2"/>
         <li className="m-2">
-            <Link to="/redund">Refund & Cancellation</Link>
+            <Link to="/refund">Refund & Cancellation</Link>
         </li>
     </ul>
 </div>:<></>}

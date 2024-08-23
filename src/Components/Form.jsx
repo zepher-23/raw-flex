@@ -428,11 +428,11 @@ const handleSubmit = async () => {
           </div>
 
           <div className="button flex justify-between items-center my-5">
-          <Link to="https://payments.cashfree.com/forms/rawflexpayment" > <button
+          <Link to="https://payments-test.cashfree.com/forms/rawflextest" > <button
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
-    {loading ? 'Loading...' : <h4>Pay & Download</h4>}
+    {loading ? 'Loading...' : <h4 className="font-bold">Pay & Download</h4>}
 </button></Link>
 
             {/* <div>
@@ -454,9 +454,9 @@ const handleSubmit = async () => {
         Buy Now
       </a>
     </div> */}
-     <div className="flex flex-col items-center shadow-lg px-5 lg:px-10 py-1 rounded-lg">
+     <div className="flex flex-col items-center shadow-lg px-4 mx-2 lg:px-10 py-1 rounded-lg">
         <span className="text-sm line-through text-gray-300">MRP: ₹299</span>
-        <span className="text-5xl font-light text-white font-mono "><em className="text-lg">Rs.</em>99</span>
+        <span className="text-5xl font-light text-white font-mono  "><em className="text-lg">Rs.</em>99</span>
       </div>
           </div>
 {/* {formattedResponse && <div className="w-full text-left my-5 ">{formattedResponse}</div>} */}
