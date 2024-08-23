@@ -157,7 +157,7 @@ const handleSubmit = async () => {
       setError("Please provide your age, gender, weight, height, fitness goals, current activity level, and any dietary restrictions or preferences.");
       return;
     }
-    
+
 
     setLoading(true);
     setError('');
@@ -428,7 +428,7 @@ const handleSubmit = async () => {
           </div>
 
           <div className="button flex justify-center my-5">
-          <Link to="https://test.payumoney.com/url/uIhLlIFCHEzk" > <button
+          <Link to="https://test.payumoney.com/url/3IjqPtss0gI0" > <button
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
