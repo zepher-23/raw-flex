@@ -7,7 +7,7 @@ const Hero = ({Form:Form}) => {
   <div className="hero relative w-screen overflow-y-scroll">
   <div className="fixed inset-0  bg-center bg-no-repeat bg-cover opacity-40" style={{backgroundImage:`url(${hero1})`, backgroundSize:'100%',backgroundSize:'cover',backgroundPosition:'center',backgroundRepeat:'no-repeat'}}></div>
   <div className="fixed inset-0 bg-gradient-to-r from-primary to-secondary opacity-60"></div>
-  <div className="relative lg:px-32  h-full z-10">
+  <div className="relative lg:px-10 w-screen lg:w-full h-full z-10">
     <Form />
   </div>
 </div>

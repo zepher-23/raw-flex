@@ -1,42 +1,223 @@
-import React,{useState} from "react";
+import React,{useState,useEffect,useRef} from "react";
+import axios from 'axios';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+import html2pdf from 'html2pdf.js';
+import '../App.css'
+
+
 
 const Form = () => {
+    
+    const contentRef = useRef(null)
+   
+
+const [downloadReady,setDownloadReady] = useState(false)
+    const [loading, setLoading] = useState(false)
+    const [pdf, setPdf] = useState(false)
+    const [error, setError] = useState('');
+
+    const apikey = import.meta.env.VITE_OPENAI_API_KEY
+
+    
+
     const [formData, setFormData] = useState({
         name: '',
         age: '',
+        gender:'',
         height: '',
         weight: '',
-        injury:'',
+        allergy:'None',
+        injury:'None',
         goal:'',
-        dietPref:'',
+        dietPref:'Veg & Non-Veg',
         curActivity:'',
         units: 'metric',
       });
     
+      
+      const prompt = `Create a personalized workout and diet plan for a user with the following details:
+  - Age: ${formData.age}
+  - Gender: ${formData.gender}
+  - Weight: ${formData.weight}
+  - Height: ${formData.height}
+  - Fitness Goals: ${formData.goal}
+  - Diet Preference: ${formData.dietPref}
+  - Current Activity Level: ${formData.curActivity}
+  - Injuries: ${formData.injury}
+  Please provide a 7 day workout plan, daily macro intake, daily calorie intake and create a meal plan.`;
       // Handler to update form data
-      const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-          ...prevData,
-          [name]: value,
-        }));
-      };
-    
-      // Handler to switch between metric and imperial units
-      const toggleUnits = () => {
-        setFormData((prevData) => ({
-          ...prevData,
-          units: prevData.units === 'metric' ? 'imperial' : 'metric',
-          height: '',
-          weight: '',
-        }));
-      };
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
 
-      //function to submit basic user info
-      const submitInfo =()=>{
-
+  const validateForm = () => {
+    for (const key in formData) {
+      if (formData[key] === '' || formData[key] === null) {
+        return false;
       }
-    
+    }
+    return true;
+  };
+
+  // Handler to switch between metric and imperial units
+  const toggleUnits = () => {
+    setFormData((prevData) => ({
+      ...prevData,
+      units: prevData.units === 'metric' ? 'imperial' : 'metric',
+      height: '',
+      weight: '',
+    }));
+  };
+
+//   const fetchData = async () => {
+//     setLoading(true);
+//     setError('');
+//     try {
+//       const result = await axios.post(
+//         'https://api.openai.com/v1/chat/completions',
+//         {
+//           model: 'gpt-4o-mini',
+//           messages: [
+//             {
+//               role: "system",
+//               content: "You are a fitness expert capable of providing a tailored workout plan using only bodyweight and a variety of diet plan. Do not include any introductory statements or repeat information about the user profile. Be more considerate of the users injuries or allergies. If no information about the user is provided, kindly request in a sentence to provide the information."
+//             },
+//             { role: 'system', content: prompt }
+//           ],
+//           max_tokens: 100,
+//           temperature: 0.7,
+//         },
+//         {
+//           headers: {
+//             'Authorization': `Bearer ${apikey}`,
+//             'Content-Type': 'application/json',
+//           },
+//         }
+//       );
+
+//       setResponse(result.data.choices[0].message.content);
+
+//     } catch (err) {
+//       setError('An error occurred while fetching data.');
+//       console.log(err);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (response) {
+//       const htmlContent = marked(response);
+//       const sanitizedHtml = DOMPurify.sanitize(htmlContent);
+//       setFormattedResponse(
+//         <div ref={pdfRef} style={{ display: 'flex' }}>
+//           <div dangerouslySetInnerHTML={{ __html: sanitizedHtml }} />
+//         </div>
+//       );
+//     }
+//   }, [response]);
+
+//   useEffect(() => {
+//     if (formattedResponse && pdfRef.current) {
+//       // Ensure that content is rendered before generating the PDF
+//       requestAnimationFrame(() => {
+        
+//         const options = {
+//           margin: [10, 10, 10, 10],
+//           filename: 'workout-and-diet-plan.pdf',
+//           image: { type: 'jpeg', quality: 0.98 },
+//           html2canvas: { scale: 2 },
+//           jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+//         };
+
+//         html2pdf()
+//           .from(pdfRef.current)
+//           .set(options)
+//           .toPdf()
+//           .get('pdf')
+//           .then((pdf) => {
+//             pdf.save();
+//           })
+//           .catch((err) => {
+//             console.error('Error generating PDF: ', err);
+//           });
+//       });
+//     }
+//   }, [formattedResponse]);
+
+  
+const handleSubmit = async () => {
+    if (!validateForm()) {
+      setError("Please provide your age, gender, weight, height, fitness goals, current activity level, and any dietary restrictions or preferences.");
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    try {
+      const result = await axios.post(
+        'https://api.openai.com/v1/chat/completions',
+        {
+          model: 'gpt-4o-mini',
+          messages: [
+            {
+              role: "system",
+              content: "You are a fitness expert capable of providing a tailored workout plan using only bodyweight and a variety of diet plan. Do not include any introductory statements or repeat information about the user profile. Be more considerate of the users injuries or allergies. If no information about the user is provided, kindly request in a sentence to provide the information."
+            },
+            { role: 'user', content: prompt }
+          ],
+          max_tokens: 1000,
+          temperature: 0.7,
+        },
+        {
+          headers: {
+            'Authorization': `Bearer ${apikey}`,
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+
+      const responseText = result.data.choices[0].message.content;
+      const htmlContent = marked(responseText);
+      const sanitizedHtml = DOMPurify.sanitize(htmlContent);
+
+      // Set the content of the ref element
+      contentRef.current.innerHTML  = `<div style="dislpay:flex,flex-direction:column,justify-content:center,width:100%"><h1 style="margin-bottom:20px;color:#34E89E" >RawFlex Calisthenics</h1> ${sanitizedHtml}</div> `
+
+      // Generate PDF from the ref element
+      
+       generatePDF();
+       setDownloadReady(true)
+
+    } catch (err) {
+      setError('An error occurred while fetching data.');
+      console.log(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const generatePDF = () => {
+
+   
+    const element = contentRef.current;
+    console.log(element)
+
+    const options = {
+      margin: [11, 11, 11, 11],
+      filename: 'workout-and-diet-plan.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+    html2pdf().from(element).set(options).save();
+  };
+
       // Convert height and weight to the appropriate unit
       const heightPlaceholder =
         formData.units === 'metric' ? 'cm' : 'inches';
@@ -45,7 +226,8 @@ const Form = () => {
       
     
       return (
-        <div className="max-w-md mx-3 lg:mx-6 mt-28 my-10 p-8 bg-gray-100 bg-opacity-20 shadow-md">
+        <div className="main lg:w-full w-screen flex flex-col lg:flex-row justify-evenly">
+        <div style={{scrollbarWidth:'none'}} className="max-w-lg mx-3 lg:mx-6 lg:w-2/6 mt-28 my-10 p-8 h-screen overflow-y-scroll bg-gray-100 bg-opacity-20 shadow-md">
           <h4 className="text-3xl font-bold text-white text-center mb-6">
             Discover the perfect diet and exercise plan to reach your peak
             fitness!
@@ -80,22 +262,33 @@ const Form = () => {
               placeholder="Enter your name"
             />
           </div>
+          <div className="mb-4">
+            <label className="block text-lg mb-2 text-left px-2">Gender*</label>
+            <input
+              type="text"
+              name="gender"
+              value={formData.gender}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border-b-2 outline-none focus:outline-none rounded-lg bg-transparent"
+              placeholder="Enter your gender"
+           required />
+          </div>
 
           <div className="mb-4">
-            <label className="block text-lg mb-2 text-left px-2">Age</label>
+            <label className="block text-lg mb-2 text-left px-2">Age*</label>
             <input
               type="number"
               name="age"
               value={formData.age}
               onChange={handleChange}
               className="w-full px-3 py-2 border-b-2 outline-none focus:outline-none rounded-lg bg-transparent"
-              placeholder="Enter your age"
+              placeholder="Enter your age" required
             />
           </div>
 
           <div className="mb-4">
             <label className="block text-lg mb-2 text-left px-2">
-              Height ({heightPlaceholder})
+              Height ({heightPlaceholder})*
             </label>
             <input
               type="number"
@@ -103,13 +296,13 @@ const Form = () => {
               value={formData.height}
               onChange={handleChange}
               className="w-full px-3 py-2 border-b-2  outline-none focus:outline-none rounded-lg bg-transparent"
-              placeholder={`Enter your height in ${heightPlaceholder}`}
+              placeholder={`Enter your height in ${heightPlaceholder}`} required
             />
           </div>
 
           <div className="mb-4">
             <label className="block text-lg mb-2 text-left px-2">
-              Weight ({weightPlaceholder})
+              Weight ({weightPlaceholder})*
             </label>
             <input
               type="number"
@@ -117,7 +310,7 @@ const Form = () => {
               value={formData.weight}
               onChange={handleChange}
               className="w-full px-3 py-2 border-b-2  outline-none focus:outline-none rounded-lg bg-transparent"
-              placeholder={`Enter your weight in ${weightPlaceholder}`}
+              placeholder={`Enter your weight in ${weightPlaceholder}`} required
             />
           </div>
 
@@ -136,7 +329,7 @@ const Form = () => {
               </option>
               <option className="text-black" value="Vegetarian">Vegetarian</option>
               <option className="text-black" value="Non-Vegetarian">Non-Vegetarian</option>
-              <option className="text-black" value="Both">Both</option>
+              <option className="text-black" value="Veg & Non-Veg">Veg & Non-Veg</option>
             </select>
           </div>
           <div className="mb-4">
@@ -145,7 +338,7 @@ const Form = () => {
             </label>
             <input
               type="text"
-              name="injury"
+              name="allergy"
               value={formData.allergy}
               onChange={handleChange}
               className="w-full px-3 py-2 border-b-2  outline-none focus:outline-none rounded-lg bg-transparent"
@@ -234,12 +427,21 @@ const Form = () => {
 
           <div className="button flex justify-center my-5">
             <button
-              onClick={submitInfo}
+              onClick={handleSubmit}
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
-              Submit
+               {loading ? 'Loading...' : 'Download Plan'}
             </button>
+{pdf ? <button
+              onClick={handleSubmit}
+              className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
+            >
+               Download PDF
+            </button>:null}
           </div>
+{/* {formattedResponse && <div className="w-full text-left my-5 ">{formattedResponse}</div>} */}
+{error ? <div className="w-full text-left my-5 " >{error}</div>:null}
+
 
           <div className="bg-primary flex flex-col items-start rounded-lg p-4">
             <h3 className="text-lg font-semibold mb-2">Summary:</h3>
@@ -249,9 +451,15 @@ const Form = () => {
               Height: {formData.height} {heightPlaceholder}
             </p>
             <p>
+
               Weight: {formData.weight} {weightPlaceholder}
             </p>
           </div>
+        </div>
+
+        <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6" >{downloadReady ? <div></div>: <div className="flex w-full h-full justify-center text-secondary items-center"><h3>Your report will appear here!</h3></div>}</div>
+
+
         </div>
       );
 };

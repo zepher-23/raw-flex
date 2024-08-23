@@ -8,6 +8,10 @@
   text-align: center;
 }
 
+hr{
+  margin-top: 10px;
+  margin-bottom: 10px
+}
 
 h1 {
   @apply text-4xl font-bold;
