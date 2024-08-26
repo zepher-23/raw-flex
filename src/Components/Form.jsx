@@ -65,6 +65,43 @@ const [downloadReady,setDownloadReady] = useState(false)
     return true;
   };
 
+  const handlePayment = async () =>{
+    // if(validateForm()){
+
+
+
+    // }
+    try {
+        const response = await axios.post('/.netlify/functions/payment',
+          {
+            customer_email: 'john@cashfree.com',
+            customer_name: 'John Doe',
+            customer_phone: '9999999999',
+            link_amount: 99, // after discount
+          },
+          {
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            // No need to specify mode: 'cors' in axios, it's handled automatically
+          }
+        );
+        console.log(response);
+    
+        // Assuming the payment link is returned in response.data.paymentLink
+
+        // if (response.status === 200 && response.data.paymentLink) {
+        //   window.location.href = response.data.paymentLink; // Redirect to payment page
+        // } else {
+        //   setError('Failed to initiate payment. Please try again.');
+        // }
+      } catch (err) {
+        setError('An error occurred. Please try again.');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+  }
   // Handler to switch between metric and imperial units
   const toggleUnits = () => {
     setFormData((prevData) => ({
@@ -428,12 +465,13 @@ const handleSubmit = async () => {
           </div>
 
           <div className="button flex justify-between items-center my-5">
-          <Link to="https://payments-test.cashfree.com/forms/rawflextest" > <button
+          {/* <Link to="https://payments-test.cashfree.com/forms/rawflextest" > </Link> */}
+          <button onClick={handlePayment}
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
     {loading ? 'Loading...' : <h4 className="font-bold">Pay & Download</h4>}
-</button></Link>
+</button>
 
             {/* <div>
       <a

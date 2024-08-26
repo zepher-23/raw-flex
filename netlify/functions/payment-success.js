@@ -8,7 +8,7 @@ exports.handler = async function (event, context) {
         return {
           statusCode: 302,
           headers: {
-            Location: '/payment-success',
+            Location: 'http://localhost:5173/payment-success',
           },
         };
       } catch (error) {

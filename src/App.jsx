@@ -13,6 +13,8 @@ import Terms from './Pages/Terms';
 
 import Refund from './Pages/Refund';
 
+import Privacy from './Pages/Privacy';
+
 function App() {
 
   return (
@@ -28,8 +30,9 @@ function App() {
         <Route path='payment-success' element={<Success />} />
         <Route path='payment-failure' element={<Failure />} />
         <Route path='payment-cancel' element={<Cancel />} />
-        <Route path='terms' element={<Terms />} />
+        <Route path='terms&conditions' element={<Terms />} />
         <Route path='refund' element={<Refund />} />
+        <Route path='Privacy-policy' element={<Privacy/>}/>
 
 
 
