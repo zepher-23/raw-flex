@@ -39,10 +39,14 @@ const Refund = () => {
           <li>Refund requests made within 7 days of purchase are eligible for a full refund, provided the service has not been used.</li>
           <li>Requests made after 7 days but before the end of the service period will be considered for a partial refund based on the unused portion of the service.</li>
           <li>Requests for refunds due to dissatisfaction with the service or any issues encountered should be submitted with a detailed explanation.</li>
+        <li>
+        All refunds will be processed within 7-10 business days following approval of the request or receipt of the returned product, in the case of physical items.
+    </li>
         </ul>
         <p>
           Refunds will be issued to the original payment method used during the purchase.
         </p>
+        
       </section>
 
       <section className="mb-6">

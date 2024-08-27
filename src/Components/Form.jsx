@@ -463,15 +463,17 @@ const handleSubmit = async () => {
               </option>
             </select>
           </div>
+          <p className="text-xs text-left">*This report is not medical advice in any form, please consult a healthcare professional before making any significant changes to your lifestyle.
+</p>
 
           <div className="button flex justify-between items-center my-5">
-          {/* <Link to="https://payments-test.cashfree.com/forms/rawflextest" > </Link> */}
-          <button onClick={handlePayment}
+          <Link to="https://test.payumoney.com/url/3IjqPtss0gI0" > <button onClick={handlePayment}
               
               className="px-6 py-2 bg-secondary hover:bg-opacity-70 shadow-lg active:shadow-sm text-xl rounded-md"
             >
     {loading ? 'Loading...' : <h4 className="font-bold">Pay & Download</h4>}
-</button>
+</button></Link> 
+          
 
             {/* <div>
       <a
@@ -518,7 +520,7 @@ const handleSubmit = async () => {
         <div ref={contentRef} style={{scrollbarWidth:"none"}} className="block max-w-lg lg:max-w-3xl mx-3 text-black text-left lg:mt-28 lg:mx-10  lg:w-full  rounded-xl my-8 bg-white p-6 lg:p-12" >{downloadReady ? <div></div>: <div className="flex flex-col w-full h-full justify-center  items-center">
             <h3 className="max-w-md text-center font-bold text-secondary ">You can view your report here and a PDF will be available for download!</h3> 
             <p className="text-black p-6">We charge Rs. 99 for generating your personalized workout and meal plan to cover the costs of maintaining
-                 and improving our platform. This fee ensures you receive accurate, expert-reviewed recommendations,
+                 and improving our platform. This fee ensures you receive accurate and personalised recommendations,
                  helping us keep our service reliable and valuable for your fitness journey.</p></div>}</div>
 
 

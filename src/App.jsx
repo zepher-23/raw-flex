@@ -14,6 +14,7 @@ import Terms from './Pages/Terms';
 import Refund from './Pages/Refund';
 
 import Privacy from './Pages/Privacy';
+import About from './Pages/About';
 
 function App() {
 
@@ -32,7 +33,9 @@ function App() {
         <Route path='payment-cancel' element={<Cancel />} />
         <Route path='terms&conditions' element={<Terms />} />
         <Route path='refund' element={<Refund />} />
-        <Route path='Privacy-policy' element={<Privacy/>}/>
+        <Route path='privacy-policy' element={<Privacy/>}/>
+        <Route path='about' element={<About />} />
+
 
 
 

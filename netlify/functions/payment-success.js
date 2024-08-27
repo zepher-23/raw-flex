@@ -1,5 +1,5 @@
 exports.handler = async function (event, context) {
-    if (event.httpMethod === 'GET') {
+    if (event.httpMethod === 'POST') {
       try {
         // Handle cancellation
         const queryParams = event.queryStringParameters;

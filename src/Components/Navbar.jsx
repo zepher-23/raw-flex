@@ -72,6 +72,9 @@ const [showOption, setShowOption] = useState(false)
   <a href="/programs">Programs</a>
 </li>
 <li className="lg:mx-4 mx-2 text-lg hover:text-blue-500 hover:scale-110 transition-transform duration-100 cursor-pointer">
+  <a href="/about">About Us</a>
+</li>
+<li className="lg:mx-4 mx-2 text-lg hover:text-blue-500 hover:scale-110 transition-transform duration-100 cursor-pointer">
   <a href="/contact">Contact</a>
 </li>
 
@@ -100,7 +103,15 @@ const [showOption, setShowOption] = useState(false)
         </li>
         <hr className="mx-4 m-2"/>
         <li className="m-2">
-            <Link to="/terms">Terms & Condition</Link>
+            <Link to="/about">About Us</Link>
+        </li>
+        <hr className="mx-4 m-2"/>
+        <li className="m-2">
+            <Link to="/terms&conditions">Terms & Condition</Link>
+        </li>
+        <hr className="mx-4 m-2"/>
+        <li className="m-2">
+            <Link to="/privacy-policy">Terms & Condition</Link>
         </li>
         <hr className="mx-4 m-2"/>
         <li className="m-2">

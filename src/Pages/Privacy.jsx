@@ -77,7 +77,7 @@ const Privacy = () => {
       <h2> Your Rights</h2>
       <p>
         You have the right to access, update, or delete your personal information at any time. To exercise these rights,
-        please contact us at [Your Contact Information].
+        please contact us at <em className="text-secondary">support@rawflexcalisthenics.in</em>.
       </p>
 
       <h2> Changes to This Policy</h2>
