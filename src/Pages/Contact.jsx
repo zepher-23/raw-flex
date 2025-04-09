@@ -17,7 +17,7 @@ const Contact = () => {
 
 <p className="mb-5">You may contact us using the information below:</p>
 
-<h5 className="text-secondary">Rawflex Calisthenics</h5>
+<h5 className="text-secondary">Joel Joseph</h5>
 <p>Contact No: +91 9110835613</p>
 <p>E-Mail ID: support@rawflexcalisthenics.in</p>
 <p>Address: RMV 2nd stage, Ashwath Nagar, bangalore, Karnataka, PIN: 560094.</p>
